@@ -1,10 +1,18 @@
 from django.shortcuts import render
+from .models import Supplier, Product
 
 def landingview(request):
     return render(request, 'landingpage.html')
 
+# Product view´s
+
 def productlistview(request):
-    return render(request, 'productlist.html')
+    productlist = Product.objects.all()
+    supplierlist = Supplier.objects.all()
+    context = {'products': productlist, 'suppliers': supplierlist}
+    return render (request,"productlist.html",context)
 
 def supplierlistview(request):
-    return render(request, 'supplierlist.html')
+    supplierlist = Supplier.objects.all()
+    context = {'suppliers': supplierlist}
+    return render (request, "supplierlist.html",context)
