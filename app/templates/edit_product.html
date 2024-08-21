@@ -10,7 +10,7 @@
         <div class="card-body">
             <form method="post" action="/edit-product-post/{{product.id}}/">
 
-                {%csrf_token %}
+                {%csrf_token %} <!--varmistaa ettei mikään ulkopuolinen sivu pysty lähettää pyyntöä djangon backendille-->
                 <div class="form-group">
                     <label>price</label>
                     <input type="number" name="unitprice" value={{product.unitprice}}>
