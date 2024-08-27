@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^bn0^%)9k(zq=e9y1vvq8e1ro#5@@cqtkdio5_4d41j=+=lt=v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -87,7 +87,7 @@ DATABASES = {
 '''
 
 # Lokaali PostgreSQL
-'''
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -98,8 +98,8 @@ DATABASES = {
         'PORT': '5432'
     }
 }
-'''
 
+'''
 # Render käytössä
 DATABASES = {
     'default': dj_database_url.config(
@@ -108,7 +108,7 @@ DATABASES = {
         conn_max_age=600
     )
 }
-
+'''
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
