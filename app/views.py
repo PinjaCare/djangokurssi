@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Supplier, Product
 from django.contrib.auth import authenticate, login, logout
 
+
 # Loginpage
 def loginview(request):
     return render (request, "loginpage.html")

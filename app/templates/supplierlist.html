@@ -13,7 +13,7 @@
 
         <form method="post" action="/search-suppliers/">
 
-            {%csrf_token %}
+            
             <input class="card-text" class="card-text" type="text" placeholder="search" name="search">
 
             <input type="submit" value="Search" class="btn btn-success btn-sm" name="">
@@ -46,7 +46,7 @@
         <div class="card-body">
             <form method="post" action="/add-supplier/">
     
-                {% csrf_token %}
+                
                 <input class="card-text" class="card-text" type="text" placeholder="company´s name" name="companyname">
                 <input class="card-text" type="text" placeholder="contact person" name="contactname">
                 <input class="card-text" type="text" placeholder="address" name="address">
