@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import productlistview, supplierlistview, addsupplier, addproduct, \
     deleteproduct, confirmdeleteproduct, edit_product_post, edit_product_get, searchsuppliers, \
-    products_filtered, loginview, login_action, logout_action
+    products_filtered, loginview, login_action, logout_action, customerlistview, addcustomer
 
 urlpatterns = [
 
@@ -23,4 +23,8 @@ urlpatterns = [
     path('suppliers/', supplierlistview),
     path('add-supplier/', addsupplier),
     path('search-suppliers/', searchsuppliers),
+
+    # Customers url's
+    path('customers/', customerlistview),
+    path('add-customer/', addcustomer),
 ]

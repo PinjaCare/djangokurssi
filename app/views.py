@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Supplier, Product
+from .models import Supplier, Product, Customers, Orders
 from django.contrib.auth import authenticate, login, logout
 
 
@@ -83,10 +83,7 @@ def products_filtered(request, id):
     context = {'products': filteredproducts}
     return render (request,"productlist.html",context)
 
-def supplierlistview(request):
-    supplierlist = Supplier.objects.all()
-    context = {'suppliers': supplierlist}
-    return render (request, "supplierlist.html",context)
+
 
 #Supplier views
 def addsupplier(request):
@@ -104,3 +101,32 @@ def searchsuppliers(request):
     filtered = Supplier.objects.filter(companyname__icontains=search)
     context = {'suppliers': filtered}
     return render (request,"supplierlist.html",context)
+
+def supplierlistview(request):
+    supplierlist = Supplier.objects.all()
+    context = {'suppliers': supplierlist}
+    return render (request, "supplierlist.html",context)
+
+# Customer views
+
+def customerlistview(request):
+    if not request.user.is_authenticated:
+        return render(request, 'loginpage.html')
+    else:
+        customerlist = Customers.objects.all()
+        context = {'customers': customerlist}
+        return render (request,"customerlist.html",context)
+    
+def addcustomer(request):
+    if not request.user.is_authenticated:
+        return render(request, 'loginpage.html')
+    else:
+        a = request.POST['first_name']
+        b = request.POST['last_name']
+        c = request.POST['email']
+        d = request.POST['phone']
+        e = request.POST['address']
+        f = request.POST['country']
+    
+    Customers(first_name = a, last_name = b, email = c, phone = d, address = e, country = f).save()
+    return redirect(request.META['HTTP_REFERER'])

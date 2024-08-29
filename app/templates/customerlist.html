@@ -1,0 +1,95 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+
+<br />
+<!-- Lisäyslomakkeen paikka -->
+<div id="add-div"></div>
+<br />
+
+<h1>Customers</h1>
+
+<a onclick="showaddform()" class="btn btn-primary">Add new customer</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Country</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for c in customers %}
+            <tr>
+                <td>{{ c.first_name }}</td>
+                <td>{{ c.last_name }}</td>
+                <td>{{ c.email }}</td>
+                <td>{{ c.phone }}</td>
+                <td>{{ c.address }}</td>
+                <td>{{ c.country }}</td>
+            </tr>
+        {% empty %} <!--vaihtoehtoinen content, jos loopattavaa contenttia ei löydy-->
+            <tr>
+                <td colspan="4">No customers found.</td>
+            </tr>
+        {% endfor %} <!---tämä lopettaa loopin---->
+    </tbody>
+</table>
+
+
+<script>
+
+    let g = `
+    <h2 style="color: black;">Please fill in form</h2>
+    
+    <div class="card" style="width: 25rem;">
+        <div class="card-body">
+            <form method="post" action="/add-customer/">
+                
+                <input class="card-text" class="card-text" type="text" placeholder="first name" name="first_name">
+                <input class="card-text" type="text" placeholder="last name" name="last_name">
+                <input class="card-text" type="text" placeholder="email" name="email">
+                <input class="card-text" type="text" placeholder="address" name="address">
+                <input class="card-text" type="text" placeholder="country" name="country">
+                <br />
+
+                <br/>
+                <input type="submit" value="Confirm" class="btn btn-success btn-sm" name="">
+                <input type="submit" id="hide-btn" class="btn btn-secondary btn-sm" onclick="hideaddform()" value="Cancel" name="">
+            </form>
+        </div>
+    </div>`
+
+    function showaddform() {
+        document.getElementById("add-div").innerHTML = g
+    }
+
+    function hideaddform() {
+        document.getElementById("add-div").innerHTML = ""
+    }
+
+</script>
+
+{% endblock %}
