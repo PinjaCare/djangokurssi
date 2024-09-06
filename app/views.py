@@ -52,8 +52,8 @@ def addproduct(request):
         d = request.POST['unitsinstock']
         e = request.POST['supplier']
     
-    Product(productname = a, packagesize = b, unitprice = c, unitsinstock = d, supplier = Supplier.objects.get(id = e)).save()
-    return redirect(request.META['HTTP_REFERER'])
+        Product(productname = a, packagesize = b, unitprice = c, unitsinstock = d, supplier = Supplier.objects.get(id = e)).save()
+        return redirect(request.META['HTTP_REFERER'])
 
 def confirmdeleteproduct(request, id):
     product = Product.objects.get(id = id)
@@ -127,6 +127,15 @@ def addcustomer(request):
         d = request.POST['phone']
         e = request.POST['address']
         f = request.POST['country']
-    
-    Customers(first_name = a, last_name = b, email = c, phone = d, address = e, country = f).save()
-    return redirect(request.META['HTTP_REFERER'])
+        Customers(first_name = a, last_name = b, email = c, phone = d, address = e, country = f).save()
+        return redirect(request.META['HTTP_REFERER'])
+
+# Orders views
+
+def orderlistview(request):
+    if not request.user.is_authenticated:
+        return render(request, 'loginpage.html')
+    else:
+        orderlist = Orders.objects.all()
+        context = {'orders': orderlist}
+        return render (request,"orderslist.html",context)

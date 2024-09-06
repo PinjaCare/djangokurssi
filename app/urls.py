@@ -1,8 +1,7 @@
 from django.urls import path
 from .views import productlistview, supplierlistview, addsupplier, addproduct, \
-    deleteproduct, confirmdeleteproduct, edit_product_post, edit_product_get, searchsuppliers, \
-    products_filtered, loginview, login_action, logout_action, customerlistview, addcustomer
-
+    deleteproduct, customerlistview, addcustomer, confirmdeleteproduct, edit_product_post, edit_product_get, \
+    searchsuppliers, products_filtered, loginview, login_action, logout_action, orderlistview
 urlpatterns = [
 
     # Login & logout
@@ -27,4 +26,7 @@ urlpatterns = [
     # Customers url's
     path('customers/', customerlistview),
     path('add-customer/', addcustomer),
+
+    # Order's urls
+    path('orders/', orderlistview),
 ]
